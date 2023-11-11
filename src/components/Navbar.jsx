@@ -3,6 +3,7 @@ import {BsFillBagHeartFill} from 'react-icons/bs'
 import {BiShoppingBag} from 'react-icons/bi'
 import Cart from './Cart';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 
@@ -25,7 +26,9 @@ function Navbar() {
     </div>
     <div className=' flex justify-around items-center shadow-md'>
         <div>
-        <img className='w-[100px] h-[100] rounded-full  object-cover' src="/images/7515317.jpg" alt="" />
+            <Link to={"/"}>
+                 <img className='w-[100px] h-[100] rounded-full  object-cover' src="/images/7515317.jpg" alt="" />
+            </Link>
         </div>
         <div className='flex flex-row items-center'>
             <button className='font-inter text-base font-medium 

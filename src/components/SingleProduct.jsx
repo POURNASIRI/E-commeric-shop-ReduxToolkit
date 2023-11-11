@@ -49,7 +49,7 @@ function SingleProduct() {
                         value={size}
                         id="size">
                           {
-                            item.size.map(name=>(
+                            item?.size?.map(name=>(
                               <option  className="flex items-center gap-2 border-gray-400" 
                               key={name}
                               value={name}

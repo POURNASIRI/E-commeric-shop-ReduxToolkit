@@ -6,6 +6,7 @@ import {Route,Routes} from 'react-router-dom'
 import SingleProduct from './components/SingleProduct';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/filterProduct/:type' element={<FilteredProducts/>}/>
         <Route path='/filterProduct/:type/:id' element={<SingleProduct/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }
