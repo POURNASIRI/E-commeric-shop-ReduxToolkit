@@ -6,7 +6,6 @@ import NavigateBtn from './NavigateBtn'
 function Main() {
   return (
     <div>
-        <Navbar/>
         <Slider/>
         <NavigateBtn/>
     </div>

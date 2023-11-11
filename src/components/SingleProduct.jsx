@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Button } from "@material-tailwind/react";
+import { addtoCart } from '../features/cartSlice';
 
 
 function SingleProduct() {
   const {singleProducts}= useSelector(state=>state.products)
   const {id} = useParams()
   const productSize = singleProducts[0].size ? singleProducts[0].size : ""  
-  const productColor = singleProducts[0].color ? singleProducts[0].color : ""  
+  const productColor = singleProducts[0].color 
   const[size,setSize] = useState(productSize)
   const[color,setColor] = useState(productColor)
+  const dispatch = useDispatch()
+
   
   return (
     <div>
@@ -65,8 +68,8 @@ function SingleProduct() {
                       className='w-[300px] outline-none border border-gray-500 rounded-lg p-2 '
                       name="size"
                       disabled={true} 
-                      onChange={(e)=>setColor(e.target.value)}
-                      value={color}
+                      onChange={(e)=>setSize(e.target.value)}
+                      value={size}
                       id="size">
                         {
                           item?.size?.map(name=>(
@@ -87,10 +90,10 @@ function SingleProduct() {
                         <label htmlFor="size" className='block text-xl my-4'>Select Color</label>
                         <select
                         className='w-[300px] outline-none border border-gray-500 rounded-lg p-2 '
-                        name="size" 
-                        onChange={(e)=>setSize(e.target.value)}
-                        value={size}
-                        id="size">
+                        name="color" 
+                        onChange={(e)=>setColor(e.target.value)}
+                        value={color}
+                        id="color">
                           {
                             item.color.map(name=>(
                               <option  className="flex items-center gap-2 border-gray-400" 
@@ -109,6 +112,17 @@ function SingleProduct() {
                       size='lg'
                       className='hover:bg-green-300 hover:text-white' 
                       color="gray"
+                      onClick={()=> dispatch(addtoCart({
+                        id:item.id,
+                        name:item.name,
+                        size:size,
+                        img:item.img,
+                        text:item.text,
+                        color:color,
+                        amount:1,
+                        price:item.price,
+                        totalPrice:item.price
+                      }))}
                       >ADD TO CART</Button>
                     </div>
                     </div>

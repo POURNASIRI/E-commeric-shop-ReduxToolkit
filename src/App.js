@@ -4,11 +4,18 @@ import FilteredProducts from './components/FilteredProducts';
 import Main from './components/Main';
 import {Route,Routes} from 'react-router-dom'
 import SingleProduct from './components/SingleProduct';
+import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar';
+
 
 
 function App() {
+
+   
+  
   return (
     <div className='App'>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Main/>}/>
         <Route path='/filterProduct/:type' element={<FilteredProducts/>}/>

@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {BsFillBagHeartFill} from 'react-icons/bs'
 import {BiShoppingBag} from 'react-icons/bi'
+import Cart from './Cart';
+import { useSelector } from 'react-redux';
+
+
+
 
 function Navbar() {
+
+    const [open, setOpen] = useState(false);
+    const {totalAmount} = useSelector(state=>state.cart)
+ 
+    const handleOpen = () => {
+        setOpen(true);
+    }
   return (
     <div>
     <div className='bg-black p-2 w-full shadow-xl'>
@@ -22,9 +34,16 @@ function Navbar() {
             <BsFillBagHeartFill className='text-xl text-red-400 '/>
             <span className='text-xs ml-1 font-bold'> Favorite </span>
         </div>
-        <div className='flex  ml-1'>
-            <BiShoppingBag className='text-xl text-red-400 '/>
+        <div className='flex ml-1 cursor-pointer ' onClick={handleOpen}>
+            {
+                totalAmount > 0 ? <span className='rounded-full
+                 bg-gray-300 px-2 font-inter 
+                 text-sm mr-1'>{totalAmount}</span>
+                 :
+                 <BiShoppingBag className='text-xl text-red-400 '/>
+            }
             <span className='text-xs ml-1 font-bold'> Shopping Cart </span>
+            <div>{open && <Cart openModal={open} setOpen={setOpen}/>}</div>
         </div>
         </div>
     </div>
