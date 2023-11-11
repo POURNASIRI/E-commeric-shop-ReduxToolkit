@@ -28,12 +28,16 @@ function ProductSectionItem({
   return (
    
     <Card className="w-96">
-    <CardHeader shadow={false} floated={false} className="h-96">
+    <CardHeader  shadow={false} floated={false} className="h-96 relative">
       <img
         src={img}
         alt="card-image"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover "
       />
+      <span className='absolute 
+      top-7 right-2 
+      rotate-[-45deg] 
+      text-3xl font-bold text-orange-900'>SALE%</span>
     </CardHeader>
     <CardBody>
       <div className="mb-2 flex items-center justify-between">

@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import {BsFillBagHeartFill} from 'react-icons/bs'
 import {BiShoppingBag} from 'react-icons/bi'
 import Cart from './Cart';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../features/authSlice';
 
 
 
@@ -12,6 +13,10 @@ function Navbar() {
 
     const [open, setOpen] = useState(false);
     const {totalAmount} = useSelector(state=>state.cart)
+    const dispatch = useDispatch()
+    const user = useSelector(state=>state.user.user)
+    const{name,image,authUser} = user
+    
  
     const handleOpen = () => {
         setOpen(true);
@@ -31,8 +36,11 @@ function Navbar() {
             </Link>
         </div>
         <div className='flex flex-row items-center'>
-            <button className='font-inter text-base font-medium 
-            tracking-normal leading-none text-center mr-4'>Logout</button>
+            <button
+            onClick={()=>dispatch(logout)}
+             className='font-inter text-base font-medium 
+            tracking-normal leading-none text-center mr-4'
+            >Logout</button>
         <div className='flex '>
             <BsFillBagHeartFill className='text-xl text-red-400 '/>
             <span className='text-xs ml-1 font-bold'> Favorite </span>
@@ -48,6 +56,14 @@ function Navbar() {
             <span className='text-xs ml-1 font-bold'> Shopping Cart </span>
             <div>{open && <Cart openModal={open} setOpen={setOpen}/>}</div>
         </div>
+        {
+            authUser &&
+            <div className='flex items-center justify-center mx-4'>
+                <img className='h-[40px] w-[40px] rounded-full' src={image} alt="" />
+                <h4 className='ml-1 capitalize text-base font-bold'>Hi {name}</h4>
+            </div>
+        }
+            
         </div>
     </div>
     </div>
