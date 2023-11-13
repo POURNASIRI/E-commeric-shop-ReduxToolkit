@@ -21,7 +21,7 @@ const cartSlice = createSlice({
                 }
             )
              if(exisit){
-                // exisit.amount ++;
+                exisit.amount ++;
                 exisit.totalPrice += productId.price;
                 state.totalAmount ++
                 state.totalPrice += productId.price
