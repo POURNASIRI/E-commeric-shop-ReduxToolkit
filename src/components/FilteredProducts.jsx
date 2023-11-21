@@ -50,6 +50,7 @@ function FilteredProducts() {
                 {
                   genderBtn.map(item=>(
                     <Button
+                    key={item}
                     onClick={()=>dispatch(filterGender(item))} 
                     className='border border-gray-200' 
                     variant="text">
